@@ -77,6 +77,33 @@ if (isset($_POST['register_button']))
     echo "Emails don't match!";
   }
 
+  if(strlen($firstName) > 25 || strlen($firstName) < 2)
+  {
+    echo "Your first name must be between 2 and 25 characters!";
+  }
+
+  if(strlen($lastName) > 25 || strlen($lastName) < 2)
+  {
+    echo "Your last name must be between 2 and 25 characters!";
+  }
+
+  if($password != $confirmPassword)
+  {
+    echo "Your passwords do not match!";
+  }
+  else
+  {
+    if(preg_match('/[^A-Za-z0-9]/', $password))
+    {
+      echo "Your password can only contain English characters!";
+    }
+  }
+
+  if(strlen($password) > 30 || strlen($password) < 5)
+  {
+    echo "Your password must be between 5 and 30 characters!";
+  }
+
 
 }
 

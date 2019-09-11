@@ -1,4 +1,5 @@
 <?php
+session_start();
 $connection = mysqli_connect("localhost", "root", "", "social");
 
 if(mysqli_connect_errno())
@@ -25,21 +26,26 @@ if (isset($_POST['register_button']))
   $firstName = strip_tags($_POST[ 'register_fname']); // remove html tags
   $firstName = str_replace(' ', '', $firstName); // remove spaces
   $firstName = ucfirst(strtolower($firstName)); // first letter uppercase
+  $_SESSION['register_fname'] = $firstName; // stores vinto session variable
 
   // Last name
   $lastName = strip_tags($_POST[ 'register_lname']); // remove html tags
   $lastName = str_replace(' ', '', $lastName); // remove spaces
   $lastName = ucfirst(strtolower($lastName)); // first letter uppercase
+  $_SESSION['register_lname'] = $lastName; // stores into session variable
+
 
   // Email
   $email = strip_tags($_POST[ 'register_email']); // remove html tags
   $email = str_replace(' ', '', $email); // remove spaces
   $email = ucfirst(strtolower($email)); // first letter uppercase
+  $_SESSION['register_email'] = $email; // stores into session variable
 
   // Confirm email
   $confirmEmail = strip_tags($_POST[ 'register_email2']); // remove html tags
   $confirmEmail = str_replace(' ', '', $confirmEmail); // remove spaces
   $confirmEmail = ucfirst(strtolower($confirmEmail)); // first letter uppercase
+  $_SESSION['register_email2'] = $confirmEmail; // stores into session variable
 
   // Password
   $password = strip_tags($_POST[ 'register_password']); // remove html tags

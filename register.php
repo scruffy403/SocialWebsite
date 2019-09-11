@@ -17,6 +17,59 @@ $confirmPassword = "";
 $signupDate = "";
 $errorMessagesArray = "";
 
+if (isset($_POST['register_button']))
+{
+  // registration form values
+
+  // First name
+  $firstName = strip_tags($_POST[ 'register_fname']); // remove html tags
+  $firstName = str_replace(' ', '', $firstName); // remove spaces
+  $firstName = ucfirst(strtolower($firstName)); // first letter uppercase
+
+  // Last name
+  $lastName = strip_tags($_POST[ 'register_lname']); // remove html tags
+  $lastName = str_replace(' ', '', $lastName); // remove spaces
+  $lastName = ucfirst(strtolower($lastName)); // first letter uppercase
+
+  // Email
+  $email = strip_tags($_POST[ 'register_email']); // remove html tags
+  $email = str_replace(' ', '', $email); // remove spaces
+  $email = ucfirst(strtolower($email)); // first letter uppercase
+
+  // Confirm email
+  $confirmEmail = strip_tags($_POST[ 'register_email2']); // remove html tags
+  $confirmEmail = str_replace(' ', '', $confirmEmail); // remove spaces
+  $confirmEmail = ucfirst(strtolower($confirmEmail)); // first letter uppercase
+
+  // Password
+  $password = strip_tags($_POST[ 'register_password']); // remove html tags
+
+  // Confirm password
+  $confirmPassword = strip_tags($_POST[ 'register_password2']); // remove html tags
+
+  $signupDate = "Y-m-d";
+
+  if($email == $confirmEmail)
+  {
+    // validate email format
+    if(filter_var($email, FILTER_VALIDATE_EMAIL))
+    {
+
+    }
+    else
+    {
+      echo "Invalid email format";
+
+    }
+  }
+  else
+  {
+    echo "Emails don't match!";
+  }
+
+
+}
+
  ?>
 
 <!DOCTYPE html>

@@ -55,6 +55,16 @@ if (isset($_POST['register_button']))
     if(filter_var($email, FILTER_VALIDATE_EMAIL))
     {
       $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+      // check if email is already in DB
+      $email_check = mysqli_query($connection, "SELECT email FROM users WHERE email='$email'");
+
+      $count_rows_returned = mysqli_num_rows($email_check);
+
+      if($count_rows_returned > 0)
+      {
+        echo "Email already in use";
+      }
     }
     else
     {

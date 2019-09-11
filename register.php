@@ -54,7 +54,7 @@ if (isset($_POST['register_button']))
     // validate email format
     if(filter_var($email, FILTER_VALIDATE_EMAIL))
     {
-
+      $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     }
     else
     {

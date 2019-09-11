@@ -123,13 +123,36 @@ if (isset($_POST['register_button']))
   </head>
   <body>
     <form class="" action="register.php" method="post">
-      <input type="text" name="register_fname" placeholder="First Name" required>
+      <input type="text" name="register_fname" placeholder="First Name" value="<?php
+      if(isset($_SESSION['register_fname']))
+      {
+        echo $_SESSION['register_fname'];
+      }
+      ?>" required>
       <br>
-      <input type="text" name="register_lname" placeholder="Last Name" required>
+      <input type="text" name="register_lname" placeholder="Last Name"
+      value="<?php
+      if(isset($_SESSION['register_lname']))
+      {
+        echo $_SESSION['register_lname'];
+      }
+      ?>" required>
       <br>
-      <input type="email" name="register_email" placeholder="Email" required>
+      <input type="email" name="register_email" placeholder="Email"
+      value="<?php
+      if(isset($_SESSION['register_email']))
+      {
+        echo $_SESSION['register_email'];
+      }
+      ?>" required>
       <br>
-      <input type="email" name="register_email2" placeholder="Confirm Email" required>
+      <input type="email" name="register_email2" placeholder="Confirm Email"
+      value="<?php
+      if(isset($_SESSION['register_email2']))
+      {
+        echo $_SESSION['register_email2'];
+      }
+      ?>" required>
       <br>
       <input type="password" name="register_password" placeholder="Password" required>
       <br>

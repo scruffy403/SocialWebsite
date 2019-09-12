@@ -16,7 +16,7 @@ $confirmEmail = "";
 $password = "";
 $confirmPassword = "";
 $signupDate = "";
-$errorMessagesArray = "";
+$errorMessagesArray = array();
 
 if (isset($_POST['register_button']))
 {
@@ -69,45 +69,45 @@ if (isset($_POST['register_button']))
 
       if($count_rows_returned > 0)
       {
-        echo "Email already in use";
+        array_push($errorMessagesArray, "Email already in use<br>");
       }
     }
     else
     {
-      echo "Invalid email format";
+      array_push($errorMessagesArray, "Invalid email format<br>");
 
     }
   }
   else
   {
-    echo "Emails don't match!";
+    array_push($errorMessagesArray, "Emails don't match<br>");
   }
 
   if(strlen($firstName) > 25 || strlen($firstName) < 2)
   {
-    echo "Your first name must be between 2 and 25 characters!";
+    array_push($errorMessagesArray, "Your first name must be between 2 and 25 characters<br>");
   }
 
   if(strlen($lastName) > 25 || strlen($lastName) < 2)
   {
-    echo "Your last name must be between 2 and 25 characters!";
+    array_push($errorMessagesArray, "Your last name must be between 2 and 25 characters<br>");
   }
 
   if($password != $confirmPassword)
   {
-    echo "Your passwords do not match!";
+    array_push($errorMessagesArray, "Your passwords do not match<br>");
   }
   else
   {
     if(preg_match('/[^A-Za-z0-9]/', $password))
     {
-      echo "Your password can only contain English characters!";
+      array_push($errorMessagesArray, "Your password can only contain English characters<br>");
     }
   }
 
   if(strlen($password) > 30 || strlen($password) < 5)
   {
-    echo "Your password must be between 5 and 30 characters!";
+    array_push($errorMessagesArray, "Your password must be between 5 and 30 characters<br>");
   }
 
 

@@ -125,6 +125,13 @@ if (isset($_POST['register_button']))
       $username = $username . "_" . $i;
       $checkDB_for_username = mysqli_query($connection, "SELECT username FROM users WHERE username='$username'");
     }
+
+    // Assign default profile picture
+    $random = rand(1, 2); // random number between 1 and 2
+    if($rand ==1)
+      $profile_pic = "assets/images/profile_pics/default/head_wet_asphalt.png";
+    else if($rand ==2)
+      $profile_pic = "assets/images/profile_pics/default/head_wisteria.png";
   }
 
 }

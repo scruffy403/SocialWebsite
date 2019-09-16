@@ -53,7 +53,7 @@ if (isset($_POST['register_button']))
   // Confirm password
   $confirmPassword = strip_tags($_POST[ 'register_password2']); // remove html tags
 
-  $signupDate = "Y-m-d";
+  $signupDate = date('Y-m-d');
 
   if($email == $confirmEmail)
   {
@@ -128,10 +128,22 @@ if (isset($_POST['register_button']))
 
     // Assign default profile picture
     $random = rand(1, 2); // random number between 1 and 2
-    if($rand ==1)
+    if($random ==1)
+    {
       $profile_pic = "assets/images/profile_pics/default/head_wet_asphalt.png";
-    else if($rand ==2)
+    }
+    else if($random ==2)
+    {
       $profile_pic = "assets/images/profile_pics/default/head_wisteria.png";
+    }
+
+    $query_create_account = mysqli_query($connection, "INSERT INTO users (id,
+      first_name, last_name, username, email, password, signup_date,
+      profile_pic, num_posts, num_likes, user_closed, friend_array)
+      VALUES(NULL, '$firstName', '$lastName', '$username', '$email', '$password',
+         '$signupDate', '$profile_pic', '0', '0', 'no', ',')");
+
+    echo "Error: " . mysqli_error($connection);
   }
 
 }

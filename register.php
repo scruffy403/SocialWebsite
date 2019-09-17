@@ -13,7 +13,7 @@ require 'includes/form_handlers/login_handler.php';
   </head>
   <body>
 
-    // login form
+    <!-- login form -->
     <form action="register.php" method="POST">
       <input type"email" name="login_email" placeholder="Email Address" value="<?php
       if(isset($_SESSION['login_email']))
@@ -31,7 +31,7 @@ require 'includes/form_handlers/login_handler.php';
     </form>
     <br>
 
-    // registration form
+    <!-- registration form -->
     <form class="" action="register.php" method="post">
       <input type="text" name="register_fname" placeholder="First Name" value="<?php
       if(isset($_SESSION['register_fname']))

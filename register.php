@@ -11,6 +11,16 @@ require 'includes/form_handlers/register_handler.php';
     <title>Welcome to Social</title>
   </head>
   <body>
+
+    <form action="register.php" method="POST">
+      <input type"email" name="login_email" placeholder="Email Address">
+      <br>
+      <input type"password" name="login_password" placeholder="Password">
+      <br>
+      <input type="submit" name="login_button" value="Login">
+    </form>
+    <br>
+
     <form class="" action="register.php" method="post">
       <input type="text" name="register_fname" placeholder="First Name" value="<?php
       if(isset($_SESSION['register_fname']))

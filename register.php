@@ -15,7 +15,13 @@ require 'includes/form_handlers/login_handler.php';
   <body>
 
     <div class="wrapper">
+
       <div class="login_box ">
+        <div class="login_header">
+          <h1>Social!</h1>
+          Login or signup below
+        </div>
+        
         <!-- login form -->
         <form action="register.php" method="POST">
           <input type"email" name="login_email" placeholder="Email Address" value="<?php

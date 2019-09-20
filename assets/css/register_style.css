@@ -11,6 +11,7 @@
 html, body {
   height: 100%;
   min-height: 100%;
+  text-align: center;
 }
 form {
   text-align: center;
@@ -19,6 +20,12 @@ form {
 body {
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #292323c4;
+  text-shadow: #000 0.5px 0.5px 0px;
 }
 
 .wrapper {
@@ -88,4 +95,8 @@ input[name="login_email"], input[name="login_password"] {
 input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover,
 input[name="login_email"]:hover, input[name="login_password"]:hover {
   border-color: #e8b08b;
+}
+
+#second {
+  display: none;
 }

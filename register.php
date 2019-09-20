@@ -9,7 +9,7 @@ require 'includes/form_handlers/login_handler.php';
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Welcome to Social</title>
+    <title>Welcome to Family Connect</title>
     <link rel="stylesheet" type="text/css" href="assets/css/register_style.css">
   </head>
   <body>
@@ -18,10 +18,10 @@ require 'includes/form_handlers/login_handler.php';
 
       <div class="login_box ">
         <div class="login_header">
-          <h1>Social!</h1>
+          <h1>Family Connect!</h1>
           Login or signup below
         </div>
-        
+
         <!-- login form -->
         <form action="register.php" method="POST">
           <input type"email" name="login_email" placeholder="Email Address" value="<?php

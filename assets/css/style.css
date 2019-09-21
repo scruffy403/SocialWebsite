@@ -81,3 +81,20 @@ nav a:hover {
     float: left;
     margin-bottom: 20px;
 }
+
+.user_details a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user_details_beside_pic {
+  width: 125px;
+  display: inline-block;
+  position: absolute;
+}
+.user_details img {
+	height: 120px;
+	border-radius: 5px;
+	margin-right: 5px;
+}

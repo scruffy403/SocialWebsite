@@ -39,8 +39,8 @@ if(isset($_POST['post']))
       </form>
 
       <?php
-      $user_object = new User($connection, $userLoggedIn);
-      echo $user_object->getFirstAndLastName();
+      $post = new Post($connection, $userLoggedIn);
+      $post->loadPostsFriends();
 
        ?>
 

@@ -30,6 +30,14 @@ class User {
     return $row['first_name'] . " " . $row['last_name'];
   }
 
+  public function getProfilePic() {
+    $username = $this->user['username'];
+    $query = mysqli_query($this->connection, "SELECT profile_pic
+    FROM users WHERE username='$username'");
+    $row = mysqli_fetch_array($query);
+    return $row['profile_pic'];
+  }
+
   public function isClosed() {
     $username = $this->user['username'];
     $query = mysqli_query($this->connection, "SELECT user_closed FROM users
@@ -56,6 +64,8 @@ class User {
       return false;
     }
   }
+
+
 
 }
 

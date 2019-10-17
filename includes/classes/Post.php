@@ -68,8 +68,7 @@ class Post {
 
     if (mysqli_num_rows($data_query) > 0) {
 
-      // Number of results checked (not necessarilly posted)
-      $number_of_iterations = 0;
+      $number_of_iterations = 0; // Number of results checked (not necessarilly posted)
       $count = 1;
 
 
@@ -118,6 +117,22 @@ class Post {
           $last_name = $user_row['last_name'];
           $profile_pic = $user_row['profile_pic'];
 
+          ?>
+
+          <script>
+            function toggle<?php echo $id; ?>() {
+              var element = document.getElementById("toggleComment<?php echo $id; ?>");
+
+              if(element.style.display == "block")
+                element.style.display = "none";
+              else
+                element.style.display = "block";
+            }
+
+          </script>
+
+
+          <?php
           // Timeframe
           $date_time_now = date("Y-m-d H:i:s");
           $start_date = new DateTime($date_time); // Time of post
@@ -182,7 +197,7 @@ class Post {
             }
           }
 
-          $string .= "<div class='status_post'>
+          $string .= "<div class='status_post' onClick='javascript:toggle$id()'>
                         <div class='post_profile_pic'>
                           <img src='$profile_pic' width='50'>
                         </div>
@@ -197,12 +212,16 @@ class Post {
                         </div>
 
                       </div>
+                      <div class='post_comment' id='toggleComment$id' style='display:none;'>
+                        <iframe src='comment_frame.php?post_id=$id' id='comment_iframe' frameborder='0'></iframe>
+
+                      </div>
                       <hr>";
         }
 
 
 
-      } // End of while loop 
+      } // End of while loop
 
       if ($count > $limit) {
         $string .= "<input type='hidden' class='nextPage' value='"
@@ -211,7 +230,7 @@ class Post {
       }
       else {
         $string .= "<input type='hidden' class='noMorePosts' value='true'>
-        <p style='text-aslign: center;'> No more posts to show </p>";
+        <p style='text-align: center;'> No more posts to show </p>";
       }
   }
 

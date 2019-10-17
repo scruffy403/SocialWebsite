@@ -71,11 +71,11 @@ if(isset($_POST['post']))
         var page = $('.posts_area').find('.nextPage').val();
         var noMorePosts = $('.posts_area').find('.noMorePosts').val();
 
-        if((document.body.scrollHeight == scroll_top + window.innerHeight) && noMorePosts == 'false') {
+        if((document.body.scrollHeight == document.body.scroll_top + window.innerHeight) && noMorePosts == 'false') {
              $('#loading').show();
 
 
-             var ajaxReg = $.ajax({
+             var ajaxReq = $.ajax({
                url: "includes/handlers/ajax_load_posts.php",
                type: "POST",
                data: "page=" + page + "&userLoggedIn=" + userLoggedIn,

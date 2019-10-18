@@ -131,8 +131,12 @@ class Post {
 
           </script>
 
-
           <?php
+
+          $comments_check = mysqli_query($this->connection, "SELECT * FROM comments where post_id='$id'");
+          $comments_count = mysqli_num_rows($comments_check);
+
+
           // Timeframe
           $date_time_now = date("Y-m-d H:i:s");
           $start_date = new DateTime($date_time); // Time of post
@@ -209,6 +213,14 @@ class Post {
                         <div id='post_body'>
                           $body
                           <br>
+                          <br>
+                          <br>
+                        </div>
+
+                        <div class='newsfeedPostOptions'>
+                          Comments($comments_count)&nbsp;&nbsp;&nbsp;
+
+
                         </div>
 
                       </div>

@@ -165,6 +165,7 @@ nav a:hover {
 #comment_iframe {
   max-height: 250px;
   width: 100%;
+  margin-top: 6px;
 }
 
 .comment_section {
@@ -197,4 +198,11 @@ nav a:hover {
   position: absolute;
   font-family: 'Bellota BoldItalic', sans-serif;
   text-shadow: #7f8c8d 0.5px 0.5px 0px;
+}
+
+.newsfeedPostOptions {
+  padding: 0px;
+  text-decoration: none;
+  color: #227bfa;
+  border: none;
 }

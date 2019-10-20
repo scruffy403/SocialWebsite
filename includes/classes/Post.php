@@ -225,6 +225,7 @@ class Post {
 
                         <div class='newsfeedPostOptions'>
                           Comments($comments_count)&nbsp;&nbsp;&nbsp;
+                          <iframe src='like.php?post_id=$id' scrolling='no'></iframe>
 
 
                         </div>

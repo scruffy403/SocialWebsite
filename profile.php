@@ -1,5 +1,7 @@
 <?php
 include("includes/header.php");
+include("includes/classes/User.php");
+include("includes/classes/Post.php");
 
 if (isset($_GET['profile_username'])) {
   $username = $_GET['profile_username'];
@@ -26,6 +28,25 @@ if (isset($_GET['profile_username'])) {
         <p><?php echo "Friends: " . $number_of_friends; ?></p>
 
       </div>
+      <form class="" action="<?php echo $username; ?>" method="post">
+        <?php
+        $profile_user_object = new User($connection, $username);
+        if ($profile_user_object->isClosed()) {
+          header("Location: user_closed.php");
+        }
+
+        $logged_in_user_object = new User($connection, $userLoggedIn);
+
+        if ($userLoggedIn != $username) {
+
+          if ($logged_in_user_object->isFriend($username)) {
+            echo '<input type="submit" name="remove_friend" class="danger" value="Remove Friend"><br>';
+          }
+        }
+
+        ?>
+
+      </form>
     </div>
 
     <div class="main_column column">

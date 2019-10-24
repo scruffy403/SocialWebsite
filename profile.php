@@ -42,6 +42,15 @@ if (isset($_GET['profile_username'])) {
           if ($logged_in_user_object->isFriend($username)) {
             echo '<input type="submit" name="remove_friend" class="danger" value="Remove Friend"><br>';
           }
+          else if ($logged_in_user_object->didReceiveRequest($username)) {
+            echo '<input type="submit" name="respond_request" class="warning" value="Respond to Request"><br>';
+          }
+          else if ($logged_in_user_object->didSendRequest($username)) {
+            echo '<input type="submit" name="" class="default" value="Request Sent"><br>';
+          }
+          else {
+            echo '<input type="submit" name="add_friend" class="success" value="Add Friend"><br>';
+          }
         }
 
         ?>

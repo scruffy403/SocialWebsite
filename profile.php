@@ -65,14 +65,47 @@ if (isset($_GET['profile_username'])) {
         }
 
         ?>
-
       </form>
+      
+      <input type="submit" class="deep_blue" data-toggle="modal" data-target="#post_form" value="Post Something">
+
     </div>
 
     <div class="main_column column">
       <?php echo $username; ?>
 
     </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Post Something!</h4>
+      </div>
+      <div class="modal-body">
+        <p>This will appear on the users profile page and also their newsfeed for your friends to see!</p>
+        <form class="profile_post" action="" method="post">
+          <div class="form_group">
+            <textarea class="form_control"name="post_body" ></textarea>
+            <input type="hidden" name="user_from" value="<?php echo $userLoggedIn; ?>">
+            <input type="hidden" name="user_to" value="<?php echo $username; ?>">
+          </div>
+        </form>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Post</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   </div>
   </body>

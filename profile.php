@@ -66,7 +66,7 @@ if (isset($_GET['profile_username'])) {
 
         ?>
       </form>
-      
+
       <input type="submit" class="deep_blue" data-toggle="modal" data-target="#post_form" value="Post Something">
 
     </div>
@@ -101,7 +101,7 @@ if (isset($_GET['profile_username'])) {
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Post</button>
+        <button type="button" class="btn btn-primary" name="post_button" id="submit_profile_post">Post</button>
       </div>
     </div>
   </div>

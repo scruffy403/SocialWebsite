@@ -22,9 +22,9 @@ else {
     <title>Familly Connect!</title>
 
     <!-- Javascript -->
-    <script src="assets/js/familyConnect.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/familyConnect.js"></script>
 
     <!-- CSS -->
     <script src="https://kit.fontawesome.com/71db4d34ca.js"></script>

@@ -44,6 +44,7 @@ if(isset($_POST['post']))
     </div>
 
     <script>
+    // Code block that enables infinite scrolling
     var userLoggedIn = '<?php echo $userLoggedIn; ?>';
 
     $(document).ready(function(){

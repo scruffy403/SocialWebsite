@@ -111,7 +111,7 @@ class Post {
           }
 
           if ($userLoggedIn == $added_by) {
-            $delete_button = "<button class='delete_button btn-danger'id='post$id'>X</button>";
+            $delete_button = "<button class='delete_button btn-danger'id='post$id'>Delete</button>";
           }
           else {
             $delete_button = "";
@@ -130,7 +130,7 @@ class Post {
             function toggle<?php echo $id; ?>() {
 
               var target = $(event.target);
-              if (!target.is("a")) {
+              if (!target.is("a") && !target.is("button")) {
                 var element = document.getElementById("toggleComment<?php echo $id; ?>");
 
                 if(element.style.display == "block")
@@ -248,11 +248,11 @@ class Post {
 
         ?>
 
-        <script type="text/javascript">
+        <script>
 
         $(document).ready(function(){
 
-          $('#post<?php $id;?>').on('click', function(){
+          $('#post<?php echo $id;?>').on('click', function(){
             bootbox.confirm("Are you sure you want to delete this post?", function(result) {
 
               $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {result:result});

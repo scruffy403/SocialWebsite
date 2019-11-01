@@ -117,6 +117,7 @@ nav a:hover {
   width: 70%;
   z-index: -1;
   min-height: 160px;
+  opacity: 0.88;
 }
 
 .post_form {
@@ -334,4 +335,5 @@ nav a:hover {
   float: left;
   width: 70%;
   z-index: -1;
+  opacity: 0.88;
 }

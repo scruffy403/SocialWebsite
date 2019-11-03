@@ -337,3 +337,14 @@ nav a:hover {
   z-index: -1;
   opacity: 0.88;
 }
+
+.profile_info_button {
+  width: 90%;
+  height: 30px;
+  border-radius: 5px;
+  margin: 7px 0 0 7px;
+  padding: 8px 0 10px 12px;
+  border: none;
+    background-color: #8e44ad;
+  color: #fff;
+}

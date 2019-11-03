@@ -26,11 +26,14 @@ else {
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/bootbox.min.js"></script>
     <script src="assets/js/familyConnect.js"></script>
+    <script src="assets/js/jquery.Jcrop.js"></script>
+  	<script src="assets/js/jcrop_bits.js"></script>
 
     <!-- CSS -->
     <script src="https://kit.fontawesome.com/71db4d34ca.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/jquery.Jcrop.css" type="text/css" />
 
     </script>
   </head>

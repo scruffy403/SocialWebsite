@@ -116,7 +116,7 @@ nav a:hover {
   float: right;
   width: 70%;
   z-index: -1;
-  min-height: 160px;
+  min-height: 164px;
   opacity: 0.88;
 }
 
@@ -347,4 +347,114 @@ nav a:hover {
   border: none;
     background-color: #8e44ad;
   color: #fff;
+}
+
+#message_textarea {
+  width: 80%;
+  margin-right: 8px;
+  border-radius: 5px;
+  border: solid 1px #898576;
+  font-size: 12px;
+}
+
+#post_message {
+  height: 40px;
+  width: 120px;
+  margin: 0;
+  position: absolute;
+  border: none;
+  background-color: #e8b08b;
+  color: #3e4142;
+  border-radius: 5px;
+  font-family: 'Bellota BoldItalic', sans-serif;
+  text-shadow: #7f8c8d 0.5px 0.5px 0px;
+}
+
+.message {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  color: #fff;
+}
+
+.message#blue {
+  background-color: #3498db;
+  border-color: #2980b9;
+  float: right;
+  margin-bottom: 5px;
+}
+
+.message#green {
+  background-color: #2ecc71;
+  border-color: #27ae60;
+  float: left;
+  margin-bottom: 5px;
+}
+
+.loaded_messages {
+  height: 65%;
+  min-height: 300px;
+  max-height: 400px;
+  overflow: scroll;
+  margin-bottom: 10px;
+}
+
+.loaded_conversations {
+  max-height: 200px;
+  overflow: scroll;
+}
+
+.user_found_messages {
+  border-bottom: 1px solid #D3D3D3;
+  padding: 8px 8px 10px 8px;
+}
+
+.user_found_messages:hover {
+  background-color: #D3D3D3;
+}
+
+.user_found_messages img {
+  height: 35px;
+  float: left;
+}
+
+#grey {
+  color: #565656;
+}
+
+.resultDisplay {
+  padding: 5px 5px 0 5px;
+  height: 60px;
+  border-bottom: 1px solid #D3D3D3;
+}
+
+.resultDisplay a {
+  float: none;
+}
+
+.resultDisplay:hover {
+  background-color: #EBEBEB;
+  text-decoration: none;
+}
+
+.liveSearchProfilePic img {
+  height: 53px;
+  border-radius: 25px;
+  margin: 1px 12px 0px 2px;
+  float: left;
+}
+
+.liveSearchText {
+  background-color: transparent;
+  color: #422919;
+}
+
+.liveSearchText p {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.tab-content {
+  margin-top: 25px;
 }

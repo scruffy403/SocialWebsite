@@ -1,6 +1,7 @@
 <?php
 include("includes/classes/User.php");
 include("includes/classes/Post.php");
+include("includes/classes/Message.php");
 require 'config/config.php';
 
 if(isset($_SESSION['username']))

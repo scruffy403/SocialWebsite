@@ -30,7 +30,8 @@ if($user_to != "new")
  ?>
 
  <div class="user_details column">
-   <a href="<?php echo $userLoggedIn;?>"> <img src="<?php echo $user['profile_pic']; ?>"> </a>
+   <a href="<?php echo $userLoggedIn;?>"> <img src="<?php echo
+   $user['profile_pic']; ?>"> </a>
 
    <div class="user_details_beside_pic">
      <a href="<?php echo $userLoggedIn;?>">
@@ -49,7 +50,8 @@ if($user_to != "new")
  <div class="main_column column" id="main_column">
    <?php
    if($user_to != "new"){
-     echo "<h4>You and <a href='$user_to'>" . $user_to_object->getFirstAndLastName() . "</a></h4><hr><br>";
+     echo "<h4>You and <a href='$user_to'>"
+     . $user_to_object->getFirstAndLastName() . "</a></h4><hr><br>";
      echo "<div class='loaded_messages' id='scroll_messages'>";
         echo $message_object->getMessages($user_to);
      echo "</div>";
@@ -66,13 +68,17 @@ if($user_to != "new")
         if ($user_to == "new") {
           echo "Select the friend you would like to message <br><br>";
           ?>
-          To: <input type='text' onkeyup='getUser(this.value, "<?php echo $userLoggedIn; ?>")' name='q' placeholder='Name' autocomplete='off' id='search_text_input'>
+          To: <input type='text' onkeyup='getUser(this.value, "<?php echo
+          $userLoggedIn; ?>")' name='q' placeholder='Name' autocomplete='off'
+          id='search_text_input'>
           <?php
           echo "<div class='results'></div>";
         }
         else {
-          echo "<textarea name='message_body' id='message_textarea' placeholder='Write your message ...'></textarea>";
-          echo "<input type='submit' name='post_message' class='info' id='post_message' value='Send'>";
+          echo "<textarea name='message_body' id='message_textarea'
+          placeholder='Write your message ...'></textarea>";
+          echo "<input type='submit' name='post_message' class='info'
+          id='post_message' value='Send'>";
         }
          ?>
 
@@ -83,7 +89,7 @@ if($user_to != "new")
       var div = document.getElementById("scroll_messages");
 
       if (div != null) {
-        div.scrollTop = div.scrollHeight;        
+        div.scrollTop = div.scrollHeight;
       }
     </script>
 

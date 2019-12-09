@@ -11,7 +11,9 @@ class Message {
   public function getMostRecentUser() {
     $userLoggedIn = $this->user_object->getUsername();
 
-    $query = mysqli_query($this->connection, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn' ORDER BY id DESC LIMIT 1");
+    $query = mysqli_query($this->connection, "SELECT user_to, user_from FROM
+      messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn'
+      ORDER BY id DESC LIMIT 1");
 
     if (mysqli_num_rows($query) == 0) {
       return false;
@@ -34,7 +36,9 @@ class Message {
   public function sendMessage($user_to, $body, $date) {
     if ($body != "") {
       $userLoggedIn = $this->user_object->getUsername();
-      $query = mysqli_query($this->connection, "INSERT INTO messages (id, user_to, user_from, body, date_time, opened, viewed, deleted) VALUES(NULL, '$user_to', '$userLoggedIn', '$body', '$date'
+      $query = mysqli_query($this->connection, "INSERT INTO messages
+        (id, user_to, user_from, body, date_time, opened, viewed, deleted)
+        VALUES(NULL, '$user_to', '$userLoggedIn', '$body', '$date'
 
         , 'no', 'no','no')");
     }
@@ -44,15 +48,19 @@ class Message {
     $userLoggedIn = $this->user_object->getUsername();
     $data = "";
 
-    $query = mysqli_query($this->connection, "UPDATE messages SET opened='yes' WHERE user_to='$userLoggedIn' AND user_from='$otherUser'");
-    $get_messages_query = mysqli_query($this->connection, "SELECT * FROM messages WHERE (user_to='$userLoggedIn' AND user_from='$otherUser') OR (user_from='$userLoggedIn' AND user_to='$otherUser')");
+    $query = mysqli_query($this->connection, "UPDATE messages SET opened='yes'
+      WHERE user_to='$userLoggedIn' AND user_from='$otherUser'");
+    $get_messages_query = mysqli_query($this->connection, "SELECT * FROM
+      messages WHERE (user_to='$userLoggedIn' AND user_from='$otherUser')
+      OR (user_from='$userLoggedIn' AND user_to='$otherUser')");
 
     while ($row = mysqli_fetch_array($get_messages_query)) {
       $user_to = $row['user_to'];
       $user_from = $row['user_from'];
       $body = $row['body'];
 
-      $div_top = ($user_to == $userLoggedIn) ? "<div class='message' id='green'>" : "<div class='message' id='blue'>";
+      $div_top = ($user_to == $userLoggedIn) ? "<div class='message'
+      id='green'>" : "<div class='message' id='blue'>";
       $data = $data . $div_top . $body . "</div><br><br>";
     }
     return $data;
@@ -61,7 +69,10 @@ class Message {
   public function getLatestMessage($userLoggedIn, $user2) {
     $details_array = array();
 
-    $query = mysqli_query($this->connection, "SELECT body, user_to, date_time FROM messages WHERE (user_to='$userLoggedIn' AND user_from='$user2') OR (user_to='$user2' AND user_from='$userLoggedIn') ORDER BY id DESC LIMIT 1");
+    $query = mysqli_query($this->connection, "SELECT body, user_to, date_time
+      FROM messages WHERE (user_to='$userLoggedIn' AND user_from='$user2')
+      OR (user_to='$user2' AND user_from='$userLoggedIn') ORDER BY id DESC
+      LIMIT 1");
 
     $row = mysqli_fetch_array($query);
     $sent_by = ($row['user_to'] == $userLoggedIn) ? "They said: " : "You said: ";
@@ -142,7 +153,9 @@ class Message {
     $return_string = "";
     $conversations = array();
 
-    $query = mysqli_query($this->connection, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn' ORDER BY id DESC");
+    $query = mysqli_query($this->connection, "SELECT user_to, user_from FROM
+      messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn'
+      ORDER BY id DESC");
 
     while ($row = mysqli_fetch_array($query)) {
       $user_to_push = ($row != $userLoggedIn) ? $row['user_to'] : $row['user_from'];
@@ -160,11 +173,15 @@ class Message {
       $split = str_split($latest_message_details[1], 12);
       $split = $split[0] . $dots;
 
-      $return_string .= "<a href='messages.php?u=$username'> <div class='user_found_messages'>
-                          <img src='" . $user_found_object->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>
+      $return_string .= "<a href='messages.php?u=$username'> <div
+      class='user_found_messages'>
+                          <img src='" . $user_found_object->getProfilePic()
+                          . "' style='border-radius: 5px; margin-right: 5px;'>
                           " . $user_found_object->getFirstAndLastName() . "
-                          <span class='timestamp_smaller' id='grey'>" . $latest_message_details[2] . "</span>
-                          <p id='grey' style='margin: 0;'>" . $latest_message_details[0] . $split . "</p>
+                          <span class='timestamp_smaller' id='grey'>"
+                          . $latest_message_details[2] . "</span>
+                          <p id='grey' style='margin: 0;'>"
+                          . $latest_message_details[0] . $split . "</p>
                           </div>
                           </a>";
     }

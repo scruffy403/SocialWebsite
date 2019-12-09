@@ -86,7 +86,8 @@ class Post {
         else {
           $user_to_object = new User($this->connection, $row['user_to']);
           $user_to_name = $user_to_object->getFirstAndLastName();
-          $user_to = "to <a href='" . $row['user_to'] . "'>" . $user_to_name . "</a>";
+          $user_to = "to <a href='" . $row['user_to'] . "'>"
+          . $user_to_name . "</a>";
         }
 
         // Check if user who posted, has their account closed
@@ -111,14 +112,16 @@ class Post {
           }
 
           if ($userLoggedIn == $added_by) {
-            $delete_button = "<button class='delete_button btn-danger'id='post$id'>Delete</button>";
+            $delete_button = "<button class='delete_button btn-danger'
+            id='post$id'>Delete</button>";
           }
           else {
             $delete_button = "";
           }
 
-          $user_details_query = mysqli_query($this->connection, "SELECT first_name,
-            last_name, profile_pic FROM users WHERE username='$added_by'");
+          $user_details_query = mysqli_query($this->connection,
+          "SELECT first_name, last_name, profile_pic FROM users
+          WHERE username='$added_by'");
           $user_row = mysqli_fetch_array($user_details_query);
           $first_name = $user_row['first_name'];
           $last_name = $user_row['last_name'];
@@ -131,7 +134,8 @@ class Post {
 
               var target = $(event.target);
               if (!target.is("a") && !target.is("button")) {
-                var element = document.getElementById("toggleComment<?php echo $id; ?>");
+                var element = document.getElementById("toggleComment<?php
+                echo $id; ?>");
 
                 if(element.style.display == "block")
                   element.style.display = "none";
@@ -146,7 +150,8 @@ class Post {
 
           <?php
 
-          $comments_check = mysqli_query($this->connection, "SELECT * FROM comments where post_id='$id'");
+          $comments_check = mysqli_query($this->connection, "SELECT *
+            FROM comments where post_id='$id'");
           $comments_count = mysqli_num_rows($comments_check);
 
 
@@ -233,14 +238,17 @@ class Post {
 
                         <div class='newsfeedPostOptions'>
                           Comments($comments_count)&nbsp;&nbsp;&nbsp;
-                          <iframe src='like.php?post_id=$id' scrolling='no'></iframe>
+                          <iframe src='like.php?post_id=$id' scrolling='no'>
+                          </iframe>
 
 
                         </div>
 
                       </div>
-                      <div class='post_comment' id='toggleComment$id' style='display:none;'>
-                        <iframe src='comment_frame.php?post_id=$id' id='comment_iframe' frameborder='0'></iframe>
+                      <div class='post_comment' id='toggleComment$id'
+                      style='display:none;'>
+                        <iframe src='comment_frame.php?post_id=$id'
+                        id='comment_iframe' frameborder='0'></iframe>
 
                       </div>
                       <hr>";
@@ -253,9 +261,11 @@ class Post {
         $(document).ready(function(){
 
           $('#post<?php echo $id;?>').on('click', function(){
-            bootbox.confirm("Are you sure you want to delete this post?", function(result) {
+            bootbox.confirm("Are you sure you want to delete this post?",
+            function(result) {
 
-              $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {result:result});
+              $.post("includes/form_handlers/delete_post.php?post_id=<?php
+              echo $id; ?>", {result:result});
 
               if(result)
                 location.reload();
@@ -303,7 +313,8 @@ class Post {
 
     $string = "";
     $data_query = mysqli_query($this->connection, "SELECT * FROM posts
-      WHERE deleted='no' AND ((added_by='$profileUser' AND user_to='none') OR user_to='$profileUser')ORDER by id DESC");
+      WHERE deleted='no' AND ((added_by='$profileUser' AND user_to='none')
+      OR user_to='$profileUser')ORDER by id DESC");
 
     if (mysqli_num_rows($data_query) > 0) {
 
@@ -331,14 +342,16 @@ class Post {
           }
 
           if ($userLoggedIn == $added_by) {
-            $delete_button = "<button class='delete_button btn-danger'id='post$id'>Delete</button>";
+            $delete_button = "<button class='delete_button btn-danger'id='
+            post$id'>Delete</button>";
           }
           else {
             $delete_button = "";
           }
 
-          $user_details_query = mysqli_query($this->connection, "SELECT first_name,
-            last_name, profile_pic FROM users WHERE username='$added_by'");
+          $user_details_query = mysqli_query($this->connection,
+          "SELECT first_name, last_name, profile_pic FROM users
+          WHERE username='$added_by'");
           $user_row = mysqli_fetch_array($user_details_query);
           $first_name = $user_row['first_name'];
           $last_name = $user_row['last_name'];
@@ -351,7 +364,8 @@ class Post {
 
               var target = $(event.target);
               if (!target.is("a") && !target.is("button")) {
-                var element = document.getElementById("toggleComment<?php echo $id; ?>");
+                var element = document.getElementById("toggleComment<?php
+                echo $id; ?>");
 
                 if(element.style.display == "block")
                   element.style.display = "none";
@@ -366,7 +380,8 @@ class Post {
 
           <?php
 
-          $comments_check = mysqli_query($this->connection, "SELECT * FROM comments where post_id='$id'");
+          $comments_check = mysqli_query($this->connection, "SELECT * FROM
+            comments where post_id='$id'");
           $comments_count = mysqli_num_rows($comments_check);
 
 
@@ -453,14 +468,17 @@ class Post {
 
                         <div class='newsfeedPostOptions'>
                           Comments($comments_count)&nbsp;&nbsp;&nbsp;
-                          <iframe src='like.php?post_id=$id' scrolling='no'></iframe>
+                          <iframe src='like.php?post_id=$id' scrolling='no'>
+                          </iframe>
 
 
                         </div>
 
                       </div>
-                      <div class='post_comment' id='toggleComment$id' style='display:none;'>
-                        <iframe src='comment_frame.php?post_id=$id' id='comment_iframe' frameborder='0'></iframe>
+                      <div class='post_comment' id='toggleComment$id'
+                      style='display:none;'>
+                        <iframe src='comment_frame.php?post_id=$id'
+                        id='comment_iframe' frameborder='0'></iframe>
 
                       </div>
                       <hr>";
@@ -473,9 +491,11 @@ class Post {
         $(document).ready(function(){
 
           $('#post<?php echo $id;?>').on('click', function(){
-            bootbox.confirm("Are you sure you want to delete this post?", function(result) {
+            bootbox.confirm("Are you sure you want to delete this post?",
+            function(result) {
 
-              $.post("includes/form_handlers/delete_post.php?post_id=<?php echo $id; ?>", {result:result});
+              $.post("includes/form_handlers/delete_post.php?post_id=<?php
+              echo $id; ?>", {result:result});
 
               if(result)
                 location.reload();

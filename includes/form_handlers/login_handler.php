@@ -6,7 +6,8 @@ if(isset($_POST['login_button']))
   $_SESSION['login_email'] = $email; // stores email in session variable
   $password = md5($_POST['login_password']);
 
-  $login_database_query = mysqli_query($connection, "SELECT * FROM users WHERE email='$email' AND password='$password'");
+  $login_database_query = mysqli_query($connection, "SELECT * FROM users
+    WHERE email='$email' AND password='$password'");
   $check_login_query = mysqli_num_rows($login_database_query);
 
   if($check_login_query == 1)
@@ -14,10 +15,12 @@ if(isset($_POST['login_button']))
     $row = mysqli_fetch_array($login_database_query);
     $username = $row['username'];
 
-    $user_closed_query = mysqli_query($connection, "SELECT * FROM users WHERE email='$email' AND user_closed='yes'");
+    $user_closed_query = mysqli_query($connection, "SELECT * FROM users
+      WHERE email='$email' AND user_closed='yes'");
     if(mysqli_num_rows($user_closed_query) ==1)
     {
-      $reopen_account = mysqli_query($connection, "UPDATE users SET user_closed='no' WHERE email='$email'");
+      $reopen_account = mysqli_query($connection, "UPDATE users SET
+        user_closed='no' WHERE email='$email'");
     }
 
     $_SESSION['username'] = $username;
@@ -26,7 +29,8 @@ if(isset($_POST['login_button']))
   }
   else
   {
-    array_push($errorMessagesArray, "<span style='color: red';>Email or password was incorrect</span><br>");
+    array_push($errorMessagesArray, "<span style='color: red';>Email or
+    password was incorrect</span><br>");
   }
 
 }

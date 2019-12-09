@@ -56,7 +56,8 @@ if (isset($_POST['register_button']))
       $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 
       // check if email is already in DB
-      $email_check = mysqli_query($connection, "SELECT email FROM users WHERE email='$email'");
+      $email_check = mysqli_query($connection, "SELECT email FROM users
+        WHERE email='$email'");
 
       $count_rows_returned = mysqli_num_rows($email_check);
 
@@ -78,12 +79,14 @@ if (isset($_POST['register_button']))
 
   if(strlen($firstName) > 25 || strlen($firstName) < 2)
   {
-    array_push($errorMessagesArray, "Your first name must be between 2 and 25 characters<br>");
+    array_push($errorMessagesArray, "Your first name must be between 2 and 25
+    characters<br>");
   }
 
   if(strlen($lastName) > 25 || strlen($lastName) < 2)
   {
-    array_push($errorMessagesArray, "Your last name must be between 2 and 25 characters<br>");
+    array_push($errorMessagesArray, "Your last name must be between 2 and 25
+    characters<br>");
   }
 
   if($password != $confirmPassword)
@@ -94,13 +97,15 @@ if (isset($_POST['register_button']))
   {
     if(preg_match('/[^A-Za-z0-9]/', $password))
     {
-      array_push($errorMessagesArray, "Your password can only contain English characters<br>");
+      array_push($errorMessagesArray, "Your password can only contain English
+      characters<br>");
     }
   }
 
   if(strlen($password) > 30 || strlen($password) < 5)
   {
-    array_push($errorMessagesArray, "Your password must be between 5 and 30 characters<br>");
+    array_push($errorMessagesArray, "Your password must be between 5 and 30
+    characters<br>");
   }
 
   if(empty($errorMessagesArray))
@@ -109,14 +114,16 @@ if (isset($_POST['register_button']))
 
     // Generate username by concatenating first and last name
     $username = strtolower($firstName . "_" . $lastName);
-    $checkDB_for_username = mysqli_query($connection, "SELECT username FROM users WHERE username='$username'");
+    $checkDB_for_username = mysqli_query($connection, "SELECT username FROM
+      users WHERE username='$username'");
 
     $i =0;
     while(mysqli_num_rows($checkDB_for_username) != 0)
     {
       $i++;
       $username = $username . "_" . $i;
-      $checkDB_for_username = mysqli_query($connection, "SELECT username FROM users WHERE username='$username'");
+      $checkDB_for_username = mysqli_query($connection, "SELECT username FROM
+        users WHERE username='$username'");
     }
 
     // Assign default profile picture
@@ -136,7 +143,8 @@ if (isset($_POST['register_button']))
       VALUES(NULL, '$firstName', '$lastName', '$username', '$email', '$password',
          '$signupDate', '$profile_pic', '0', '0', 'no', ',')");
 
-    array_push($errorMessagesArray, "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>");
+    array_push($errorMessagesArray, "<span style='color: #14C800;'>You're all
+    set! Go ahead and login!</span><br>");
 
     // clear session variable
     $_SESSION['register_fname'] = "";

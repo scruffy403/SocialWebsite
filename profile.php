@@ -4,7 +4,8 @@ $message_object = new Message($connection, $userLoggedIn);
 
 if (isset($_GET['profile_username'])) {
   $username = $_GET['profile_username'];
-  $user_details_query = mysqli_query($connection, "SELECT * FROM users WHERE username='$username'");
+  $user_details_query = mysqli_query($connection, "SELECT * FROM users
+    WHERE username='$username'");
   $user_array = mysqli_fetch_array($user_details_query);
 
   $number_of_friends = (substr_count($user_array['friend_array'], ",")) -1;
@@ -46,7 +47,8 @@ if (isset($_POST['post_message'])) {
     </style>
 
     <div class="profile_left">
-      <img src="<?php echo $user_array['profile_pic']; ?>" alt="profile picture">
+      <img src="<?php echo $user_array['profile_pic']; ?>"
+      alt="profile picture">
 
       <div class="profile_info">
         <p><?php echo "Posts: " . $user_array['num_posts']; ?></p>
@@ -66,29 +68,35 @@ if (isset($_POST['post_message'])) {
         if ($userLoggedIn != $username) {
 
           if ($logged_in_user_object->isFriend($username)) {
-            echo '<input type="submit" name="remove_friend" class="danger" value="Remove Friend"><br>';
+            echo '<input type="submit" name="remove_friend" class="danger"
+            value="Remove Friend"><br>';
           }
           else if ($logged_in_user_object->didReceiveRequest($username)) {
-            echo '<input type="submit" name="respond_request" class="warning" value="Respond to Request"><br>';
+            echo '<input type="submit" name="respond_request" class="warning"
+            value="Respond to Request"><br>';
           }
           else if ($logged_in_user_object->didSendRequest($username)) {
-            echo '<input type="submit" name="" class="default" value="Request Sent"><br>';
+            echo '<input type="submit" name="" class="default" value="Request
+            Sent"><br>';
           }
           else {
-            echo '<input type="submit" name="add_friend" class="success" value="Add Friend"><br>';
+            echo '<input type="submit" name="add_friend" class="success"
+            value="Add Friend"><br>';
           }
         }
 
         ?>
       </form>
 
-      <input type="submit" class="deep_blue" data-toggle="modal" data-target="#post_form" value="Post Something">
+      <input type="submit" class="deep_blue" data-toggle="modal"
+      data-target="#post_form" value="Post Something">
 
       <?php
 
       if ($userLoggedIn != $username) {
         echo '<div class="profile_info_button"> ';
-          echo $logged_in_user_object->getMutualFriends($username) . " Mutual friends";
+          echo $logged_in_user_object->getMutualFriends($username) . " Mutual
+          friends";
         echo '</div>';
       }
 
@@ -99,15 +107,26 @@ if (isset($_POST['post_message'])) {
     <div class="profile_main_column column">
 
       <ul class="nav nav-tabs" role="tablist" id="profileTabs">
-        <li class="nav-item"> <a class="nav-link active" href="#newsfeed_div" aria-controls="newsfeed_div" role="tab" data-toggle="tab">Newsfeed</a> </li>
-        <li class="nav-item"> <a class="nav-link"href="#about_div" aria-controls="about_div" role="tab" data-toggle="tab">About</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#messages_div" aria-controls="messages_div" role="tab" data-toggle="tab">Messages</a> </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#newsfeed_div"
+          aria-controls="newsfeed_div" role="tab" data-toggle="tab">Newsfeed</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"href="#about_div" aria-controls="about_div"
+          role="tab" data-toggle="tab">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#messages_div" aria-controls="messages_div"
+          role="tab" data-toggle="tab">Messages</a>
+        </li>
       </ul>
 
       <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in show active" id="newsfeed_div">
+        <div role="tabpanel" class="tab-pane fade in show active"
+        id="newsfeed_div">
           <div class="posts_area"></div>
-          <img id="loading" src="assets/images/icons/loading.gif" alt="loading logo">
+          <img id="loading" src="assets/images/icons/loading.gif"
+          alt="loading logo">
         </div>
 
         <div role="tabpanel" class="tab-pane fade" id="about_div">
@@ -117,7 +136,8 @@ if (isset($_POST['post_message'])) {
         <div role="tabpanel" class="tab-pane fade" id="messages_div">
           <?php
 
-            echo "<h4>You and <a href='". $username ."'>" . $profile_user_object->getFirstAndLastName() . "</a></h4><hr><br>";
+            echo "<h4>You and <a href='". $username ."'>"
+            . $profile_user_object->getFirstAndLastName() . "</a></h4><hr><br>";
             echo "<div class='loaded_messages' id='scroll_messages'>";
                echo $message_object->getMessages($username);
             echo "</div>";
@@ -126,8 +146,10 @@ if (isset($_POST['post_message'])) {
 
            <div class="message_post">
              <form action="" method="post">
-                 <textarea name='message_body' id='message_textarea' placeholder='Write your message ...'></textarea>
-                 <input type='submit' name='post_message' class='info' id='post_message' value='Send'>
+                 <textarea name='message_body' id='message_textarea'
+                 placeholder='Write your message ...'></textarea>
+                 <input type='submit' name='post_message' class='info'
+                 id='post_message' value='Send'>
              </form>
 
            </div>
@@ -146,29 +168,36 @@ if (isset($_POST['post_message'])) {
 
 
 <!-- Modal -->
-<div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel">
+<div class="modal fade" id="post_form" tabindex="-1" role="dialog"
+aria-labelledby="postModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal"
+        aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Post Something!</h4>
       </div>
       <div class="modal-body">
-        <p>This will appear on the users profile page and also their newsfeed for your friends to see!</p>
+        <p>This will appear on the users profile page and also their
+          newsfeed for your friends to see!</p>
         <form class="profile_post" action="" method="post">
           <div class="form_group">
             <textarea class="form_control"name="post_body" ></textarea>
-            <input type="hidden" name="user_from" value="<?php echo $userLoggedIn; ?>">
-            <input type="hidden" name="user_to" value="<?php echo $username; ?>">
+            <input type="hidden" name="user_from" value="<?php
+            echo $userLoggedIn; ?>">
+            <input type="hidden" name="user_to" value="<?php
+            echo $username; ?>">
           </div>
         </form>
       </div>
 
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="post_button" id="submit_profile_post">Post</button>
+        <button type="button" class="btn btn-default"
+        data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" name="post_button"
+        id="submit_profile_post">Post</button>
       </div>
     </div>
   </div>
@@ -187,7 +216,8 @@ $(document).ready(function(){
   $.ajax({
     url: "includes/handlers/ajax_load_profile_posts.php",
     type: "POST",
-    data: "page=1&userLoggedIn=" + userLoggedIn + "&profileUsername=" + profileUsername,
+    data: "page=1&userLoggedIn=" + userLoggedIn + "&profileUsername=" +
+            profileUsername,
     cache:false,
 
     success: function(data) {
@@ -203,14 +233,16 @@ $(document).ready(function(){
     var page = $('.posts_area').find('.nextPage').val();
     var noMorePosts = $('.posts_area').find('.noMorePosts').val();
 
-    if((document.body.scrollHeight == document.body.scroll_top + window.innerHeight) && noMorePosts == 'false') {
+    if((document.body.scrollHeight == document.body.scroll_top +
+      window.innerHeight) && noMorePosts == 'false') {
          $('#loading').show();
 
 
          var ajaxReq = $.ajax({
            url: "includes/handlers/ajax_load_profile_posts.php",
            type: "POST",
-           data: "page=" + page + "&userLoggedIn=" + userLoggedIn + "&profileUsername=" + profileUsername,
+           data: "page=" + page + "&userLoggedIn=" + userLoggedIn +
+                "&profileUsername=" + profileUsername,
            cache:false,
 
            success: function(response) {

@@ -11,7 +11,8 @@ if(isset($_POST['post']))
 
  ?>
     <div class="user_details column">
-      <a href="<?php echo $userLoggedIn;?>"> <img src="<?php echo $user['profile_pic']; ?>"> </a>
+      <a href="<?php echo $userLoggedIn;?>"> <img src="<?php
+      echo $user['profile_pic']; ?>"> </a>
 
       <div class="user_details_beside_pic">
         <a href="<?php echo $userLoggedIn;?>">
@@ -31,14 +32,16 @@ if(isset($_POST['post']))
     <div class="main_column column">
 
       <form class="post_form" action="index.php" method="POST">
-        <textarea name="post_text" id="post_text" placeholder="Got something to say?"></textarea>
+        <textarea name="post_text" id="post_text"
+        placeholder="Got something to say?"></textarea>
         <input type="submit" name="post" id="post_button" value="Post">
         <hr>
 
       </form>
 
        <div class="posts_area"></div>
-       <img id="loading" src="assets/images/icons/loading.gif" alt="loading logo">
+       <img id="loading" src="assets/images/icons/loading.gif"
+       alt="loading logo">
 
 
     </div>
@@ -71,7 +74,8 @@ if(isset($_POST['post']))
         var page = $('.posts_area').find('.nextPage').val();
         var noMorePosts = $('.posts_area').find('.noMorePosts').val();
 
-        if((document.body.scrollHeight == document.body.scroll_top + window.innerHeight) && noMorePosts == 'false') {
+        if((document.body.scrollHeight == document.body.scroll_top +
+          window.innerHeight) && noMorePosts == 'false') {
              $('#loading').show();
 
 

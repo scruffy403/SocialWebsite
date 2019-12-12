@@ -1,7 +1,10 @@
 <?php
+
+// Need to revisit videows on dropdown messaging system (section 11) to debug
 include("includes/classes/User.php");
 include("includes/classes/Post.php");
 include("includes/classes/Message.php");
+include("includes/classes/Notification.php");
 require 'config/config.php';
 
 if(isset($_SESSION['username']))
@@ -64,6 +67,17 @@ else {
       </div>
 
       <nav>
+
+        <?php
+          // Unread messages
+          $messages = new Message($connection, $userLoggedIn);
+          $number_messages = $messages->getUnreadNumber();
+
+          // Unread notifications
+          $notifications = new Notification($connection, $userLoggedIn);
+          $number_notifications = $notifications->getUnreadNumber();
+
+         ?>
         <a href="<?php echo $userLoggedIn;?>">
           <?php echo $user['first_name']; ?>
         </a>
@@ -72,9 +86,17 @@ else {
         </a>
         <a href="javascript:void(0);" onclick="getDropDownData('<?php echo $userLoggedIn;?>', 'message')">
           <i class="fas fa-envelope"></i>
+          <?php
+          if($number_messages > 0)
+            echo '<span class="notification_badge" id="unread_message">' . $number_messages .'</span>';
+          ?>
         </a>
-        <a href="#">
+        <a href="javascript:void(0);" onclick="getDropDownData('<?php echo $userLoggedIn;?>', 'notification')">
           <i class="fas fa-bell"></i>
+          <?php
+          if($number_notifications > 0)
+            echo '<span class="notification_badge" id="unread_notification">' . $number_notifications .'</span>';
+          ?>
         </a>
         <a href="requests.php">
           <i class="fas fa-users"></i>
@@ -92,5 +114,49 @@ else {
       </div>
 
     </div>
+
+    <script>
+    // Code block that enables infinite scrolling
+    var userLoggedIn = '<?php echo $userLoggedIn; ?>';
+
+    $(document).ready(function(){
+
+      $('.dropdown_data_window').scroll(function(){
+        var inner_height = $('.dropdown_data_window').innerHeight(); // Div containing data
+        var scroll_top = $('.dropdown_data_window').scrollTop();
+        var page = $('.dropdown_data_window').find('.nextPageDropdownData').val();
+        var noMoreData = $('.dropdown_data_window').find('.noMoreDropdownData').val();
+
+        if((scroll_top + inner_height >= $('.dropdown_data_window')[0].scroll) && noMoreData == 'false') {
+
+            var pageName; // Holds name of page to send ajax request to
+            var type = $('#dropdown_data_type').val();
+
+            if(type == 'notification')
+              type = "ajax_load_notifications.php";
+            else if(type == 'message')
+              type = "ajax_load_messages.php";
+
+             var ajaxReq = $.ajax({
+               url: "includes/handlers/" + pageName,
+               type: "POST",
+               data: "page=" + page + "&userLoggedIn=" + userLoggedIn,
+               cache:false,
+
+               success: function(response) {
+                 $('.dropdown_data_window').find('.nextPageDropdownData').remove(); // Removes current .nextPage
+                 $('.dropdown_data_window').find('.noMoreDropdownData').remove(); // Removes current .nextPage
+
+                 $('.dropdown_data_window').append(response);
+               }
+             });
+
+           } // End if
+
+           return false;
+      }); // End $(window).scroll(function()
+
+    });
+    </script>
 
     <div class="wrapper">

@@ -66,6 +66,21 @@ else {
 
       </div>
 
+      <div class="search">
+        <form action="search.php" method="GET" name="search_form">
+          <input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
+            <div class="button_holder">
+              <img src="assets/images/icons/magnifying_glass.png" alt="">
+            </div>
+        </form>
+        <div class="search_results">
+
+        </div>
+        <div class="search_results_footer_empty">
+
+        </div>
+      </div>
+
       <nav>
 
         <?php
@@ -76,6 +91,10 @@ else {
           // Unread notifications
           $notifications = new Notification($connection, $userLoggedIn);
           $number_notifications = $notifications->getUnreadNumber();
+
+          // Friends requests
+          $user_object = new User($connection, $userLoggedIn);
+          $number_requests = $user_object->getNumberOfFriendRequests();
 
          ?>
         <a href="<?php echo $userLoggedIn;?>">
@@ -100,6 +119,10 @@ else {
         </a>
         <a href="requests.php">
           <i class="fas fa-users"></i>
+          <?php
+            if($number_requests > 0)
+              echo '<span class="notification_badge" id="unread_requests">' . $number_requests .'</span>';
+          ?>
         </a>
         <a href="#">
           <i class="fas fa-cog"></i>

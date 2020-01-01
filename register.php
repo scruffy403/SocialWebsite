@@ -70,7 +70,7 @@ require 'includes/form_handlers/login_handler.php';
               ?>" required>
               <br>
               <input type="password" name="login_password"
-              placeholder="Password">
+              placeholder="Password" autocomplete="current-password">
               <br>
               <input type="submit" name="login_button" value="Login">
               <br>
@@ -135,11 +135,11 @@ require 'includes/form_handlers/login_handler.php';
                     $errorMessagesArray)) echo "Emails don't match<br>"; ?>
 
               <input type="password" name="register_password"
-              placeholder="Password" required>
+              placeholder="Password" autocomplete="new-password" required>
               <br>
 
               <input type="password" name="register_password2"
-              placeholder="Confirm Password" required>
+              placeholder="Confirm Password" autocomplete="new-password" required>
               <br>
               <?php if(in_array("Your password can only contain English
               characters<br>", $errorMessagesArray)) echo "Your password can

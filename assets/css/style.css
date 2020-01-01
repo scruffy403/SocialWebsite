@@ -87,6 +87,7 @@ nav a:hover {
     border-radius: 5px;
     box-shadow: 2px 2px 1px #65686d;
     z-index: -1;
+    color: #555;
 }
 
 .user_details {
@@ -580,4 +581,27 @@ nav a:hover {
 
 #search_hr {
   margin-bottom: 0;
+}
+
+.small_profile_pic {
+  height: 55px;
+  margin: 1px 12px 0 2px;
+  float: left;
+}
+
+#settings_input {
+  border: 1px solid #CCC;
+  height: 20px;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.settings_submit {
+  border: none;
+  padding: 7px 12px;
+  border-radius: 10px;
+  color: #fff;
 }

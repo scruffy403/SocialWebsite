@@ -46,6 +46,7 @@ if (isset($_POST['update_password'])) {
       }
       else {
         $new_password_md5 = md5($new_password_1);
+        //echo "Password: $new_password_md5"; was used for troubleshooting
         $password_query = mysqli_query($connection, "UPDATE users SET password='$new_password_md5' WHERE username='$userLoggedIn'");
         $password_message = "Password has been changed!<br><br>";
       }
